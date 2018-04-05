@@ -3,6 +3,14 @@
 #include <inttypes.h>
 #include <SDL2/SDL.h>
 
+#ifdef SKIP
+  clang -g -Wall -Wextra -Wpedantic --std=gnu99 -O3 \
+    `pkg-config --cflags sdl2` \
+    -o phyllotaxis phyllotaxis.c \
+    `pkg-config --libs sdl2` -lm
+  exit 0
+#endif
+
 void star(SDL_Renderer *r, uint16_t x, uint16_t y ){
         SDL_RenderDrawPoint(r,   x,   y);
         SDL_RenderDrawPoint(r,   x, y+1);
